@@ -231,7 +231,6 @@ class QwenOmniAnalyzer:
             model_id,
             **model_options,
         )
-        self.model.disable_talker()
         self.processor = Qwen2_5OmniProcessor.from_pretrained(model_id)
         self.process_mm_info = process_mm_info
         self.torch = torch
@@ -280,8 +279,8 @@ class QwenOmniAnalyzer:
                 **inputs,
                 use_audio_in_video=use_audio,
                 return_audio=False,
-                do_sample=False,
-                max_new_tokens=512,
+                thinker_do_sample=False,
+                thinker_max_new_tokens=512,
             )
         response = self.processor.batch_decode(
             generated,
